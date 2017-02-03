@@ -39,7 +39,7 @@ def running_instances():
         ec2 = boto3.resource('ec2')
         instances = ec2.instances.filter(
             Filters=[{'Name': 'instance-state-name', 'Values': ['running']}])
-        return render_template('ec2_running_instannces.html',
+        return render_template('ec2_running_instances.html',
                                instances=instances)
     except TemplateNotFound:
         abort(404)

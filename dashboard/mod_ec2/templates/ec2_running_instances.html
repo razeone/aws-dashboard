@@ -12,7 +12,7 @@
     	<td>{{ instance.instance_type }}</td>
     </tr>
   {% else %}
-    <li><em>There are no running instances.</em></li>
+    <div class="alert alert-danger" role="alert">There are no running instances</div>
   {% endfor %}
 </ul>
 {% endblock %}
