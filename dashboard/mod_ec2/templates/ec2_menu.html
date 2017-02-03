@@ -1,0 +1,16 @@
+{% extends "pages/index.html" %}
+{% block content %}
+<h3>EC2 Options</h3>
+<div class="row">
+  <div class="col-md-3">
+    <a class="btn btn-success" href="/ec2/describe_instances"><span class="glyphicon glyphicon-eye-open"></span> Describe Instances</a>
+  </div>
+  <div class="col-md-3">
+    <a class="btn btn-success" href="/ec2/running_instances"><span class="glyphicon glyphicon-play"></span> Running Instances</a>
+  </div>
+  <div class="col-md-3">
+    <button class="btn btn-success"><span class="glyphicon glyphicon-play"></span> Running Instances</button>
+  </div>
+  <div class="col-md-3"></div>
+</div>
+{% endblock %}
