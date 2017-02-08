@@ -1,0 +1,22 @@
+{% extends "pages/menu.html" %}
+{% block content %}
+<h3>All Instances</h3>
+<table class="table table-striped">
+    <tr>
+      <th>Instance Name</th>
+    	<th>Instance ID</th>
+    	<th>Instance Type</th>
+      <th>State</th>
+    </tr>
+  {% for reservation in reservations %}
+    <tr>
+      <td><a href="/ec2/instances/{{ reservation.Instances[0].InstanceId }}">{{ reservation.Instances[0].Tags[0].Value }}</a></td>
+    	<td>{{ reservation.Instances[0].InstanceId }}</td> 
+    	<td>{{ reservation.Instances[0].InstanceType }}</td>
+      <td><strong class="state-{{ reservation.Instances[0].State.Name }}">{{ reservation.Instances[0].State.Name }}</strong></td>
+    </tr>
+  {% else %}
+    <div class="alert alert-danger" role="alert">There are no instances</div>
+  {% endfor %}
+</table>
+{% endblock %}

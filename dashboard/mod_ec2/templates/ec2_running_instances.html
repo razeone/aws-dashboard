@@ -1,18 +1,20 @@
-{% extends "pages/index.html" %}
+{% extends "pages/menu.html" %}
 {% block content %}
 <h3>Running Instances</h3>
 <table class="table table-striped">
     <tr>
+      <th>Instance Name</th>
     	<th>Instance ID</th>
     	<th>Instance Type</th>
     </tr>
   {% for instance in instances %}
     <tr>
-    	<td><a href="#">{{ instance.id }}</a></td> 
+      <td><a href="/ec2/instances/{{ instance.id }}">{{ instance.tags[0]['Value'] }}</a></td>
+    	<td>{{ instance.id }}</td> 
     	<td>{{ instance.instance_type }}</td>
     </tr>
   {% else %}
     <div class="alert alert-danger" role="alert">There are no running instances</div>
   {% endfor %}
-</ul>
+</table>
 {% endblock %}

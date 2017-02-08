@@ -7,7 +7,7 @@ mod_base = Blueprint('mod_base', __name__,
                      template_folder='templates')
 
 
-@mod_base.route('/', defaults={'page': 'index'})
+@mod_base.route('/', defaults={'page': 'menu'})
 @mod_base.route('/<page>')
 def show(page):
     try:

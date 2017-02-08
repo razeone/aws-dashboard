@@ -7,6 +7,7 @@ This is the repo for the AWS-Dashboard project.
 Create a file called `environ.rc` with the following data:
 
 ```
+export FLASK_APP=run.py
 export APP_SETTINGS="develop"
 export AWS_ACCESS_KEY_ID="YOUR_AWS_ACCESS_KEY_ID"
 export AWS_SECRET_ACCESS_KEY="YOUR_AWS_SECRET_ACCESS_KEY"
