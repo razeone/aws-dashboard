@@ -90,3 +90,9 @@ class InstancesController:
             return instance.reload()
         except ClientError as e:
             logging.error(e.response['Error']['Code'])
+
+    def describe_images(self):
+        try:
+            return self.client.describe_images()
+        except ClientError as e:
+            logging.error(e.response['Error']['Code'])

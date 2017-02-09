@@ -9,7 +9,7 @@
   <div class="col"></div>
   <div class="col"></div>
   <div class="col"></div>
-  <div class="col"><a href="#" class="btn btn-success"><i class="fa fa-rocket" aria-hidden="true"></i> Launch New Instance</a></div>
+  <div class="col"><a href="/ec2/create_new_instance" class="btn btn-success"><i class="fa fa-rocket" aria-hidden="true"></i> Launch New Instance</a></div>
 </div>
 <div class="row">
   <div class="col container-fluid">
@@ -64,6 +64,7 @@
             <td>{% if instance.Instances[0].State.Name == 'stopped' %}
                 <a href="#" class="btn btn-success"><i class="fa fa-play-circle-o"></i> Start</a>
                 {% endif %}
+                <input type="hidden" name="instance_id" value="{{ instance.Instances[0].InstanceId }}">
             </td>
           </tr>
         {% endfor %}
