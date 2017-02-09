@@ -1,20 +1,71 @@
 {% extends "pages/menu.html" %}
 {% block content %}
-<h3>EC2 Options</h3>
-<div class="row">
-  <div class="col"></div>
-  <div class="col"><a href="#" class="btn btn-success">Create New Instance</a></div>
+<div class="container">
+  <div class="col">
+    <h3>EC2</h3>
+  </div>
 </div>
 <div class="row">
-  <div class="col">
-    <a class="btn btn-success" href="/ec2/describe_instances"><span class="glyphicon glyphicon-eye-open"></span> Describe Instances</a>
-  </div>
-  <div class="col">
-    <a class="btn btn-success" href="/ec2/running_instances"><span class="glyphicon glyphicon-play"></span> Running Instances</a>
-  </div>
-  <div class="col">
-    <a class="btn btn-success" href="/ec2/manage_instances"><span class="glyphicon glyphicon-pencil"></span> Manage Instances</a>
-  </div>
   <div class="col"></div>
+  <div class="col"></div>
+  <div class="col"></div>
+  <div class="col"><a href="#" class="btn btn-success"><i class="fa fa-rocket" aria-hidden="true"></i> Launch New Instance</a></div>
+</div>
+<div class="row">
+  <div class="col container-fluid">
+    {% if running_instances %}
+    <h3>Running Instances</h3>
+      <table class="table table-striped">
+      <thead class="thead-inverse">
+        <tr>
+          <th>Instance Name</th>
+          <th>Instance ID</th>
+          <th>Instance Type</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      {% for instance in running_instances %}
+        <tr>
+          <td><a href="/ec2/instances/{{ instance.id }}">{{ instance.tags[0]['Value'] }}</a></td>
+          <td>{{ instance.id }}</td> 
+          <td>{{ instance.instance_type }}</td>
+          <td>
+            <a href="#" class="btn btn-warning"><i class="fa fa-stop-circle-o"></i> Stop</a>
+            <a href="#" class="btn btn-danger"><i class="fa fa-window-close-o"></i> Terminate</a>
+          </td>
+        </tr>
+      {% endfor %}
+      </table>
+    {% else %}
+      <div class="alert alert-danger" role="alert">There are no running instances</div>
+    {% endif %}
+  </div>
+</div>
+<div class="row">
+  <div class="col container-fluid">
+    {% if described_instances %}
+      <h3>All Instances</h3>
+      <table class="table table-striped">
+        <thead class="thead-inverse">
+          <tr>
+            <th>Instance Name</th>
+            <th>Instance ID</th>
+            <th>Instance Type</th>
+            <th>State</th>
+          </tr>
+        </thead>
+        {% for instance in described_instances %}
+          <tr>
+            <td><a href="/ec2/instances/{{ instance.Instances[0].InstanceId }}">{{ instance.Instances[0].Tags[0].Value }}</a></td>
+            <td>{{ instance.Instances[0].InstanceId }}</td> 
+            <td>{{ instance.Instances[0].InstanceType }}</td>
+            <td><span class="badge badge-pill state-{{ instance.Instances[0].State.Name }}">{{ instance.Instances[0].State.Name }}</span></td>
+          </tr>
+        {% endfor %}
+      </table>
+    {% else %}
+        <div class="alert alert-danger" role="alert">There are no instances</div>
+    {% endif %}
+  </div>
 </div>
 {% endblock %}
