@@ -20,7 +20,7 @@ def show(page):
     """
     try:
         ic = InstancesController()
-        running_instances = ic.get_running_instances()
+        running_instances = list(ic.get_running_instances())
         described_instances = ic.describe_instances()
         return render_template(
             '%s.html' % page,

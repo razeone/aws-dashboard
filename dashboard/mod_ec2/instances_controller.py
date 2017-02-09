@@ -21,6 +21,13 @@ class InstancesController:
         except ClientError as e:
             logging.error(e.response['Error']['Code'])
 
+    def check_health_status(self):
+        try:
+            logging.info("Checking status")
+            return self.client.describe_instance_status()['InstanceStatuses']
+        except ClientError as e:
+            logging.error(e.response['Error']['Code'])
+
     def describe_instances(self):
         try:
             logging.info("Describing instances")

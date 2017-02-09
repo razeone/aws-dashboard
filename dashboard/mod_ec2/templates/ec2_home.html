@@ -52,6 +52,7 @@
             <th>Instance ID</th>
             <th>Instance Type</th>
             <th>State</th>
+            <th>Actions</th>
           </tr>
         </thead>
         {% for instance in described_instances %}
@@ -60,6 +61,10 @@
             <td>{{ instance.Instances[0].InstanceId }}</td> 
             <td>{{ instance.Instances[0].InstanceType }}</td>
             <td><span class="badge badge-pill state-{{ instance.Instances[0].State.Name }}">{{ instance.Instances[0].State.Name }}</span></td>
+            <td>{% if instance.Instances[0].State.Name == 'stopped' %}
+                <a href="#" class="btn btn-success"><i class="fa fa-play-circle-o"></i> Start</a>
+                {% endif %}
+            </td>
           </tr>
         {% endfor %}
       </table>
